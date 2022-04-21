@@ -1,21 +1,17 @@
-# oc-seldon
-oc-kommande för att utföra en Helm-installation av Seldon Core Operator
+# 0-model-serving-env.sh
+Envs used by other scripts, adapt if needed
 
+# 1-install-seldon-core.sh
+Envs used by other scripts, adapt if needed
 
-## oc-seldon-operator-init-crc.sh
-Behövs endast om du skall installera Seldon Core Operator i CRC
+#2
 
-## oc-seldon-operator-install.sh
-Installerar Seldon Core Operator via Helm
+#3
 
-## oc-seldon-project-create.sh
-Skapar ett OCP-projekt med Jenkins
+#4
 
-## oc-seldon-project-monitor.sh
-Lägger till monitorer för Prometheus
+#5
 
-## oc-seldon-project-delete.sh
-Tar bort OCP-projekt
+#6
 
-## oc-seldon-operator-delete.sh
-Tar bort Seldon Core Operator
+#7

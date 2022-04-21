@@ -17,7 +17,7 @@ if ! command -v "helm" &> /dev/null
 then
     echo "helm is not installed"
     echo "Install latest from https://mirror.openshift.com/pub/openshift-v4/clients/helm/latest"
-    exit
+    #exit
 fi
 
 echo "Handle namespaces"
@@ -33,10 +33,10 @@ helm install seldon-core-operator seldon-core-operator \
 --set ambassador.enabled=false \
 --set defaultUserID=$USER_ID \
 --set engine.image.registry=$SELDON_REGISTRY \
---set engine.prometheus.path=/metrics \
+--set engine.prometheus.path=$PROMETHEUS_PATH \
 --set engine.user=$USER_ID \
 --set executor.image.registry=$SELDON_REGISTRY \
---set executor.prometheus.path=/metrics \
+--set executor.prometheus.path=$PROMETHEUS_PATH \
 --set executor.user=$USER_ID \
 --set image.pullPolicy=IfNotPresent \
 --set image.registry=$SELDON_REGISTRY \
