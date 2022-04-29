@@ -22,3 +22,4 @@ USER_ID=
 PROMETHEUS_PATH="/prometheus"
 TENSORFLOW_IMAGE=-"tensorflow/serving"
 TRITON_IMAGE="nvcr.io/nvidia/tritonserver"
+SELDON_JAVA_CLIENT_IMAGE="docker.io/jena/seldon-java-client:latest"

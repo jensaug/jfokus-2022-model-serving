@@ -1,1 +1,4 @@
 .idea/**
+NOPUSH.md
+*.iml
+**/target/
