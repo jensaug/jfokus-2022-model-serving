@@ -55,7 +55,7 @@ public class PredictionResource {
     return target.request(MediaType.APPLICATION_JSON).post(Entity.entity(data, MediaType.APPLICATION_JSON));
   }
 
-  @PostConstruct
+//  @PostConstruct
   private void postConstruct() {
     Logger logger = Logger.getLogger(PredictionResource.class.getName());
     logger.info("Running PostConstruct");

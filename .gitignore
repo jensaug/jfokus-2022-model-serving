@@ -2,3 +2,4 @@
 NOPUSH.md
 *.iml
 **/target/
+**venv/
