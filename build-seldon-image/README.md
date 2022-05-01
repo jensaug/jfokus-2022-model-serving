@@ -8,7 +8,7 @@ You need to [install s2i](https://github.com/openshift/source-to-image#installat
 
 ## Containerize and push
 ```shell
-s2i build . seldonio/seldon-core-s2i-python37-ubi8 docker.io/jena/seldon-image-sklearn:latest
+s2i build . seldonio/seldon-core-s2i-python3 docker.io/jena/seldon-image-sklearn:latest
 #podman login -u USER -p PASSWORD docker.io
 podman push docker.io/jena/seldon-image-sklearn:latest
 ```

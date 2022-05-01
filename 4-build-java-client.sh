@@ -1,33 +1,14 @@
 #!/bin/bash
-# Seldon Core Helm Chart and test installation via Articatory on Openshift 4.7
 
-# Source in environment variables
-set -o allexport
-source 0-model-serving-env.sh
-set +o allexport
+## Java build and Docker build+push
+#Maven is used for Java build
+#Podman is used for Docker build
+#Replace below credentials to repo
 
-echo "Create SeldonDeployment in $NS_PROJECT based on image"
-cat <<EOF | kubectl apply --wait=true -n $NS_PROJECT -f -
-apiVersion: machinelearning.seldon.io/v1
-kind: SeldonDeployment
-metadata:
-  name: seldon-image
-spec:
-  name: seldon-image
-  predictors:
-  - componentSpecs:
-    - spec:
-        containers:
-        - image: ${SELDON_REGISTRY}/${SELDON_REPO_OWNER}/mock_classifier:${SELDON_VERSION}
-          name: classifier
-    graph:
-      children: []
-      endpoint:
-        type: REST
-      name: classifier
-      type: MODEL
-    name: default
-    replicas: 1
-EOF
+cd java-client
+mvn clean package
+podman build -t docker.io/jena/seldon-java-client:latest . # Replace with custom
+#podman login -u USER -p PASSWORD docker.io # Replace with custom
+podman push docker.io/jena/seldon-java-client:latest # Replace with custom
 
 echo "Done!"
