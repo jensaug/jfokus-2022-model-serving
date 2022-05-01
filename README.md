@@ -1,4 +1,5 @@
-# This is the demo code for the Jfokus 2022 presentation "Is The Swedish Tax Agency Ready For The Age Of AI?"
+# Demo code for the Jfokus 2022 presentation 
+"Is The Swedish Tax Agency Ready For The Age Of AI?"
 
 ## 0-model-serving-env.sh
 Envs used by other scripts, adapt if needed
