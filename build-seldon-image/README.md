@@ -1,9 +1,9 @@
 # Build och push seldon-image
 Build a Docker image of this Python source folder with model using Seldon Core S2I. 
-Optional build: `3-serve-seldon-image.sh` can use existing image `docker.io/jena/seldon-java-client:latest`
+It's an optional build: `3-serve-seldon-image.sh` can use existing image `docker.io/jena/seldon-image-sklearn:latest`
 
 ## Install S2I
-You need to [install s2i](https://github.com/openshift/source-to-image#installation), or use Openshift's `BuildConfig` resource.
+You need to [install s2i](https://github.com/openshift/source-to-image#installation) (or use something like Openshift's `BuildConfig` resource).
 
 ## Containerize and push
 Use `Podman` or `Docker` and login to your private repository.
