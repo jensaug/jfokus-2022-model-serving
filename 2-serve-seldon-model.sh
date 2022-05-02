@@ -6,7 +6,7 @@ set -o allexport
 source 0-model-serving-env.sh
 set +o allexport
 
-echo "Create SeldonDeployment in $NS_PROJECT based on model"
+echo "Create SeldonDeployment in $NS_PROJECT based on model ${SELDON_MODEL_STORE}/v${SELDON_VERSION}/sklearn/iris"
 cat <<EOF | kubectl apply --wait=true -n $NS_PROJECT -f -
 apiVersion: machinelearning.seldon.io/v1
 kind: SeldonDeployment

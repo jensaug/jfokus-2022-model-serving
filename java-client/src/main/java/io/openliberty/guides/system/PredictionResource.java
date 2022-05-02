@@ -36,19 +36,21 @@ import java.util.logging.Logger;
 @Produces(MediaType.APPLICATION_JSON)
 public class PredictionResource {
 
-  @Path("/image")
-  @GET
-  public Response getPredictionImage() {
-    return getPrediction("seldon-image-default");
-  }
-
   @Path("/model")
   @GET
   public Response getPredictionModel() {
-    return getPrediction("seldon-model-default");
+    // Add custom integration code here
+    // Invoke request to ML Service
+    return postPrediction("seldon-model-default");
   }
 
-  private Response getPrediction(String service) {
+  @Path("/image")
+  @GET
+  public Response getPredictionImage() {
+    return postPrediction("seldon-image-default");
+  }
+
+  private Response postPrediction(String service) {
     Client client = ClientBuilder.newClient();
     WebTarget target = client.target("http://" + service + ":8000/api/v1.0/predictions");
     JsonObject data = Json.createReader(new StringReader("{\"data\": { \"ndarray\": [[1,2,3,4]]}}")).readObject();

@@ -28,6 +28,7 @@ spec:
         image: $SELDON_JAVA_CLIENT_IMAGE
         ports:
         - containerPort: 9080
+
 ---
 apiVersion: v1
 kind: Service
@@ -42,9 +43,26 @@ spec:
     port: 9080
     targetPort: 9080
     nodePort: 31000
+
 ---
+kind: Ingress
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: seldon-java-client
+spec:
+  rules:
+    - host: seldon-java-client-a-seldon-project.apps-crc.testing
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: seldon-java-client
+                port:
+                  number: 9080
 EOF
 
-#curl seldon-java-client:9080/system/properties
+#curl seldon-java-client-a-seldon-project.apps-crc.testing/system/prediction/model
 
 echo "Done!"
