@@ -6,7 +6,9 @@ set -o allexport
 source 0-model-serving-env.sh
 set +o allexport
 
-echo "Create SeldonDeployment in $NS_PROJECT based on image ${SELDON_REGISTRY}/${SELDON_REPO_OWNER}/mock_classifier:${SELDON_VERSION}"
+IMAGE="${SELDON_REGISTRY}/${SELDON_REPO_OWNER}/sklearn-iris:0.3"
+
+echo "Create SeldonDeployment in $NS_PROJECT based on image $IMAGE"
 cat <<EOF | kubectl apply --wait=true -n $NS_PROJECT -f -
 apiVersion: machinelearning.seldon.io/v1
 kind: SeldonDeployment
@@ -18,7 +20,7 @@ spec:
   - componentSpecs:
     - spec:
         containers:
-        - image: ${SELDON_REGISTRY}/${SELDON_REPO_OWNER}/mock_classifier:${SELDON_VERSION}
+        - image: ${IMAGE}
           name: classifier
     graph:
       children: []
