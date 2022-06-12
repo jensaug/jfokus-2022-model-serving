@@ -24,7 +24,7 @@ echo "Handle namespaces"
 kubectl create namespace $NS_OPERATOR
 kubectl create namespace $NS_PROJECT
 
-echo "Install Seldon Operator using Helm in $NS_OPERATOR"
+echo "Install Seldon Operator $SELDON_VERSION using Helm repo $SELDON_HELM_REPO in $NS_OPERATOR"
 helm install seldon-core-operator seldon-core-operator \
 --namespace $NS_OPERATOR \
 --repo=$SELDON_HELM_REPO \

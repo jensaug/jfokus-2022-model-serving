@@ -5,8 +5,9 @@
 set -o allexport
 source 0-model-serving-env.sh
 set +o allexport
+MODEL_URI=${SELDON_MODEL_STORE}/v${SELDON_VERSION}/sklearn/iris
 
-echo "Create SeldonDeployment in $NS_PROJECT based on model ${SELDON_MODEL_STORE}/v${SELDON_VERSION}/sklearn/iris"
+echo "Create SeldonDeployment in $NS_PROJECT based on model $MODEL_URI"
 cat <<EOF | kubectl apply --wait=true -n $NS_PROJECT -f -
 apiVersion: machinelearning.seldon.io/v1
 kind: SeldonDeployment
@@ -16,15 +17,14 @@ spec:
   name: seldon-model
   predictors:
   - graph:
-      modelUri: ${SELDON_MODEL_STORE}/v${SELDON_VERSION}/sklearn/iris
+      modelUri: ${MODEL_URI}
+      #modelUri: gs://seldon-models/1.13.1/sklearn/iris
       implementation: SKLEARN_SERVER
       name: classifier
     name: default
     replicas: 1
 EOF
 
-# curl -X POST -H 'Content-Type: application/json' \
-# -d '{"data": { "ndarray": [[1,2,3,4]]}}' \
-# http://seldon-model-default:8000/api/v1.0/predictions
+# curl -X POST -H 'Content-Type: application/json' -d '{"data": { "ndarray": [[1,2,3,4]]}}' http://seldon-model-default:8000/api/v1.0/predictions
 
 echo "Done!"
